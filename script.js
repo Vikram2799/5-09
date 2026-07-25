@@ -170,7 +170,7 @@
       finaleLabel.textContent = "Married For";
       untilCaption.textContent = up.days + " days of being each other's forever.";
     } else {
-      untilLabel.textContent = "Until We're Each Other's Forever";
+      untilLabel.textContent = "And we are about to get locked in";
       finaleLabel.textContent = "Wedding Countdown";
       untilCaption.textContent = up.days + " days until we're each other's forever.";
     }
