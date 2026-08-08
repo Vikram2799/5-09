@@ -31,80 +31,22 @@
   }
 
   /* =====================================================
-     ACT 1 + ACT 2 — the intro sequence
+     ACT 1 — the intro sequence
      ===================================================== */
   function runIntro(){
-    var l1 = $("l1"), l2 = $("l2"), l3 = $("l3");
+    var l1 = $("l1"), l2 = $("l2");
 
     setTimeout(function(){ l1.classList.add("in"); }, 500 * M);
     setTimeout(function(){ l1.classList.remove("in"); l1.classList.add("out"); }, 3100 * M);
     setTimeout(function(){
       l2.classList.add("in");
-      l3.classList.add("in");
     }, 4300 * M);
     setTimeout(function(){
       l2.classList.remove("in"); l2.classList.add("out");
-      l3.classList.remove("in"); l3.classList.add("out");
     }, 7600 * M);
-    setTimeout(runAct2, 8800 * M);
+    setTimeout(revealMain, 8800 * M);
   }
 
-  function typeText(el, text, opts, onDone){
-    opts = opts || {};
-    var baseDelay = REDUCED ? 1 : (opts.baseDelay || 42);
-    var variance  = REDUCED ? 1 : (opts.variance  || 46);
-    var i = 0;
-
-    (function step(){
-      if (i >= text.length){ onDone && onDone(); return; }
-      var ch = text[i];
-      el.textContent += ch;
-      var delay = baseDelay + Math.random() * variance;
-      if (!REDUCED){
-        if (ch === ",") delay += 220;
-        if (ch === ".") delay += 380;
-        if (ch === " ") delay += Math.random() * 60;
-      }
-      i++;
-      setTimeout(step, delay);
-    })();
-  }
-
-  function runAct2(){
-    $("act1").hidden = true;
-    var act2 = $("act2");
-    act2.hidden = false;
-
-    var dateEl = $("typingDate");
-    var prefixEl = $("typedPrefix");
-    var highlightEl = $("typedHighlight");
-    var cursorEl = $("cursor");
-    var sig = $("signature1");
-
-    requestAnimationFrame(function(){ dateEl.classList.add("in"); });
-
-    setTimeout(function(){
-      typeText(prefixEl, HER_MESSAGE_PREFIX, {}, function(){
-        typeText(highlightEl, HER_MESSAGE_HIGHLIGHT, { baseDelay: 60, variance: 60 }, function(){
-          setTimeout(function(){
-            // Everything fades except "Yes for me too."
-            cursorEl.classList.add("off");
-            prefixEl.classList.add("dim");
-            dateEl.classList.remove("in");
-            highlightEl.classList.add("emph");
-
-            sig.classList.add("show", "heart-in");
-            setTimeout(function(){ sig.classList.add("beat"); }, 700 * M);
-            setTimeout(function(){
-              sig.classList.remove("beat");
-              sig.classList.add("morph");
-              setTimeout(revealMain, 1500 * M);
-            }, 2400 * M);
-          }, 900 * M);
-        });
-      });
-    }, 1000 * M);
-  }
 
   function revealMain(){
     $("intro").classList.add("hide");
