@@ -416,11 +416,13 @@ section{ position:relative; }
 .g8 figure{ aspect-ratio:16/10; }
 .g9{ width:100%; align-self:center; }
 .g9 figure{ aspect-ratio:4/3; }
+.g10{ width:100%; align-self:flex-start; }
+.g10 figure{ aspect-ratio:4/5; }
 
 @media(min-width:900px){
   .gallery{ padding-left:0; padding-right:0; }
   .g1,.g6{ width:52%; }
-  .g2,.g7{ width:40%; }
+  .g2,.g7,.g10{ width:40%; }
   .g4{ width:34%; }
   .g5{ width:58%; }
   .g9{ width:56%; }
